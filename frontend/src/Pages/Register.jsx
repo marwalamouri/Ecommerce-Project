@@ -29,7 +29,7 @@ const Register = () => {
   };
   return (
     <>
-      <div class="bg-gray-100 flex items-center justify-center h-screen">
+      <div class="p-20 bg-gray-100 flex items-center justify-center ">
         <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
           <div class="flex justify-center mb-6">
             <span class="inline-block bg-gray-200 rounded-full p-3">
@@ -145,7 +145,7 @@ const Register = () => {
             </div>
             <button
               type="submit"
-              class="w-full bg-pink-400 text-white px-4 py-2 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+              class="w-full bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
             >
               Register
             </button>

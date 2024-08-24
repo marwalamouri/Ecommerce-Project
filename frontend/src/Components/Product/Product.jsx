@@ -1,67 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct, getProduct } from "../../Redux/productSlice";
+import UpdateProduct from "./updateProduct";
 
-const Product = () => {
-  const [product, setProduct] = useState({
-    name: "",
-    brand: "",
-    category: "",
-    countInStock: "",
-    price: "",
-    description: "",
-  });
+const Product = ({ el }) => {
+  const dispatch = useDispatch();
+  const { singleProduct } = useSelector((state) => state.product);
   return (
     <>
-      <div class="flex min-h-screen items-center justify-center bg-gray-100">
-        <div class="flex font-sans">
-          <div class="flex-none w-48 relative">
-            <img
-              src="https://images.unsplash.com/photo-1699412958387-2fe86d46d394?q=80&w=3329&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
+      <div class="card flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl w-auto h-auto">
+        <div class="prod-title">
+          <p class="text-2xl uppercase text-gray-900 font-bold">{el.name}</p>
+          <p class="uppercase text-sm font-bold text-gray-600">{el.category}</p>
+          <p class="uppercase text-sm text-gray-400">{el.description}</p>
+        </div>
+        {el.countInStock > 0 ? (
+          <div class="w-full flex-none text-sm font-medium text-green-700 mt-2">
+            In stock
           </div>
-          <form class="flex-auto p-6">
-            <div class="flex flex-wrap">
-              <h1 class="flex-auto text-xl font-semibold text-gray-900">
-                Pullover Unisex
-              </h1>
-              <div class="text-lg font-semibold text-black-500">$110.00</div>
-              <div class="w-full flex-none text-sm font-medium text-black-700 mt-2">
-                In stock
-              </div>
-            </div>
-
-            <div class="flex space-x-4 mb-6 text-sm font-medium">
-              <div class="flex-auto flex space-x-4">
-                <button
-                  class="h-10 px-6 font-semibold rounded-md border border-balck-800 text-gray-900"
-                  type="button"
-                >
-                  Add to cart
-                </button>
-              </div>
-              <button
-                class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200"
-                type="button"
-                aria-label="Favorites"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                  />
-                </svg>
+        ) : (
+          <div class="w-full flex-none text-sm font-medium text-red-700 mt-2">
+            Out of stock
+          </div>
+        )}
+        <div class="prod-img">
+          <img src={el.photo} class="w-full object-cover object-center" />
+        </div>
+        <div class="prod-info grid gap-10">
+          <div class="flex flex-col md:flex-row justify-between items-center text-gray-900">
+            <p class="font-bold text-xl">{el.price} TND</p>
+            {el.countInStock > 0 ? (
+              <button class="px-6 py-2 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
+                Add to cart
               </button>
-            </div>
-            <p class="text-sm text-slate-700">Free shipping</p>
-          </form>
+            ) : (
+              <button
+                disabled
+                class=" px-6 py-2 uppercase rounded-full   border-2 border-gray-900 focus:outline-none"
+              >
+                Add to cart
+              </button>
+            )}
+          </div>
+          {/* <button class=" px-6 py-2 uppercase rounded-full  hover:bg-green-800 hover:text-white border-2 border-green-900 focus:outline-none">
+            update
+          </button> */}
+          <UpdateProduct id={el._id} />
+          <button
+            class=" px-6 py-2 uppercase rounded-full hover:bg-red-800 hover:text-white  border-2 border-red-900 focus:outline-none"
+            onClick={() => dispatch(deleteProduct(el._id))}
+          >
+            delete
+          </button>
         </div>
       </div>
     </>

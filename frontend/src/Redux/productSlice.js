@@ -14,7 +14,9 @@ export const getAllProducts = createAsyncThunk("product/getAll", async () => {
 export const getProduct = createAsyncThunk("product/getProduct", async (id) => {
   try {
     axios.defaults.withCredentials = true;
-    const { data } = await axios.get(`http://localhost:5000/api/products${id}`);
+    const { data } = await axios.get(
+      `http://localhost:5000/api/products/${id}`
+    );
     return data;
   } catch (error) {
     console.log(error.response.data.message);

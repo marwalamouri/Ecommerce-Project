@@ -66,6 +66,26 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+export const getUser = createAsyncThunk("user/getUser", async (id) => {
+  axios.defaults.withCredentials = true;
+  try {
+    const { data } = await axios.get("http://localhost:5000/api/users", id);
+    dispatch(setCredentials(data));
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+});
+export const getAllUsers = createAsyncThunk("user/getAllUsers", async () => {
+  axios.defaults.withCredentials = true;
+  try {
+    const { data } = await axios.get("http://localhost:5000/api/users");
+
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -112,6 +132,28 @@ const userSlice = createSlice({
       state.updatedUser = action.payload;
     });
     builder.addCase(updateUser.rejected, (state) => {
+      state.loading = false;
+    });
+    ///////////////////////////////////////////////////////////////////
+    builder.addCase(getUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.gettedUser = action.payload;
+    });
+    builder.addCase(getUser.rejected, (state) => {
+      state.loading = false;
+    });
+    ///////////////////////////////////////////////////////////////////
+    builder.addCase(getAllUsers.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getAllUsers.fulfilled, (state, action) => {
+      state.loading = false;
+      state.allUsers = action.payload;
+    });
+    builder.addCase(getAllUsers.rejected, (state) => {
       state.loading = false;
     });
   },

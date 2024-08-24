@@ -17,6 +17,8 @@ import store from "./Redux/store.js";
 import Products from "./Pages/Products.jsx";
 import AddProduct from "./Components/Product/AddProduct.jsx";
 import UpdateProduct from "./Components/Product/updateProduct.jsx";
+import UsersList from "./Pages/Admin/UsersList.jsx";
+import UserProfile from "./Components/User/UserProfile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,9 +26,11 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Home />} />
       <Route path="/signin" element={<Login />} />
       <Route path="/signup" element={<Register />} />
+      <Route path="/users" element={<UsersList />} />
+      <Route path="/profile" element={<UserProfile />} />
       <Route path="/products" element={<Products />}>
-        <Route path="addproduct" element={<AddProduct />} />
-        <Route path="updateproduct" element={<UpdateProduct />} />
+        {/* <Route path="addproduct" element={<AddProduct />} />
+        <Route path="updateproduct" element={<UpdateProduct />} /> */}
       </Route>
     </Route>
   )
