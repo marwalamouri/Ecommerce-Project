@@ -10,7 +10,7 @@ export const signin = createAsyncThunk(
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/users/auth",
+        "https://ecommerce-project-backend-w8gg.onrender.com/api/users/auth",
         user
       );
 
@@ -29,7 +29,7 @@ export const signUp = createAsyncThunk(
     axios.defaults.withCredentials = true;
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/users",
+        "https://ecommerce-project-backend-w8gg.onrender.com/api/users",
         user
       );
       navigate("/signin");
@@ -44,7 +44,9 @@ export const signUp = createAsyncThunk(
 export const logout = createAsyncThunk("user/logout", async (navigate) => {
   axios.defaults.withCredentials = true;
   try {
-    const { data } = await axios.post("http://localhost:5000/api/users/logout");
+    const { data } = await axios.post(
+      "https://ecommerce-project-backend-w8gg.onrender.com/api/users/logout"
+    );
     navigate("/");
     return data;
   } catch (error) {
@@ -57,7 +59,10 @@ export const updateUser = createAsyncThunk(
   async (user, { dispatch }) => {
     axios.defaults.withCredentials = true;
     try {
-      const { data } = await axios.put("http://localhost:5000/api/users", user);
+      const { data } = await axios.put(
+        "https://ecommerce-project-backend-w8gg.onrender.com/api/users",
+        user
+      );
       toast.success("User Updated");
       dispatch(setCredentials(data));
       return data;
@@ -69,7 +74,10 @@ export const updateUser = createAsyncThunk(
 export const getUser = createAsyncThunk("user/getUser", async (id) => {
   axios.defaults.withCredentials = true;
   try {
-    const { data } = await axios.get("http://localhost:5000/api/users", id);
+    const { data } = await axios.get(
+      "https://ecommerce-project-backend-w8gg.onrender.com/api/users",
+      id
+    );
     dispatch(setCredentials(data));
     return data;
   } catch (error) {
@@ -79,7 +87,9 @@ export const getUser = createAsyncThunk("user/getUser", async (id) => {
 export const getAllUsers = createAsyncThunk("user/getAllUsers", async () => {
   axios.defaults.withCredentials = true;
   try {
-    const { data } = await axios.get("http://localhost:5000/api/users");
+    const { data } = await axios.get(
+      "https://ecommerce-project-backend-w8gg.onrender.com/api/users"
+    );
 
     return data;
   } catch (error) {

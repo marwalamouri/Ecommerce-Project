@@ -5,7 +5,9 @@ import { toast } from "react-hot-toast";
 export const getAllProducts = createAsyncThunk("product/getAll", async () => {
   try {
     axios.defaults.withCredentials = true;
-    const { data } = await axios.get("http://localhost:5000/api/products");
+    const { data } = await axios.get(
+      "https://ecommerce-project-backend-w8gg.onrender.com/api/products"
+    );
     return data;
   } catch (error) {
     console.log(error.response.data.message);
@@ -15,7 +17,7 @@ export const getProduct = createAsyncThunk("product/getProduct", async (id) => {
   try {
     axios.defaults.withCredentials = true;
     const { data } = await axios.get(
-      `http://localhost:5000/api/products/${id}`
+      `https://ecommerce-project-backend-w8gg.onrender.com/api/products/${id}`
     );
     return data;
   } catch (error) {
@@ -29,7 +31,7 @@ export const createProduct = createAsyncThunk(
     try {
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(
-        "http://localhost:5000/api/products",
+        "https://ecommerce-project-backend-w8gg.onrender.com/api/products",
         product
       );
       toast.success("Product created Successfully");
@@ -45,7 +47,7 @@ export const updateProduct = createAsyncThunk(
     try {
       axios.defaults.withCredentials = true;
       const { data } = await axios.put(
-        `http://localhost:5000/api/products/${id}`,
+        `https://ecommerce-project-backend-w8gg.onrender.com/api/products/${id}`,
         newProduct
       );
       toast.success("Product updated Successfully");
@@ -59,7 +61,7 @@ export const deleteProduct = createAsyncThunk("product/delete", async (id) => {
   try {
     axios.defaults.withCredentials = true;
     const { data } = await axios.delete(
-      `http://localhost:5000/api/products/${id}`
+      `https://ecommerce-project-backend-w8gg.onrender.com/api/products/${id}`
     );
     toast.success("Product updated Successfully");
     return data;

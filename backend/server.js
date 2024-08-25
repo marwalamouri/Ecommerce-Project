@@ -13,7 +13,12 @@ const app = express();
 dotenv.config();
 connectDB();
 const PORT = process.env.PORT || 4000;
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(
+  cors({
+    credentials: true,
+    origin: "https://ecommerce-project-adxy.onrender.com",
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
