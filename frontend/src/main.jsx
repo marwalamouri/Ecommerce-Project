@@ -15,8 +15,6 @@ import Login from "./Pages/Login.jsx";
 import Register from "./Pages/Register.jsx";
 import store from "./Redux/store.js";
 import Products from "./Pages/Products.jsx";
-import AddProduct from "./Components/Product/AddProduct.jsx";
-import UpdateProduct from "./Components/Product/updateProduct.jsx";
 import UsersList from "./Pages/Admin/UsersList.jsx";
 import UserProfile from "./Components/User/UserProfile.jsx";
 

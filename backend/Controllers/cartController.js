@@ -40,8 +40,10 @@ const userCart = asyncHandler(async (req, res) => {
 });
 
 const getUserCart = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
   try {
-    const cart = await Cart.findOne({ total: 12995 });
+    const user = await User.findById(_id);
+    const cart = await Cart.findOne({ user: user._id });
 
     res.status(200).json(cart);
   } catch (error) {
@@ -53,6 +55,7 @@ const getUserCart = asyncHandler(async (req, res) => {
 const emptyCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   try {
+    const user = await User.findById(_id);
     const cart = await Cart.findOneAndDelete({ user: user._id });
     res.json(cart);
   } catch (error) {
