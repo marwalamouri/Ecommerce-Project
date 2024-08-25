@@ -13,6 +13,7 @@ export const getAllProducts = createAsyncThunk("product/getAll", async () => {
     console.log(error.response.data.message);
   }
 });
+
 export const getProduct = createAsyncThunk("product/getProduct", async (id) => {
   try {
     axios.defaults.withCredentials = true;

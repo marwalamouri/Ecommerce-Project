@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 4000;
 app.use(
   cors({
     credentials: true,
-    origin: "https://ecommerce-project-adxy.onrender.com",
+    origin: "https://ecommerce-project-backend-w8gg.onrender.com",
   })
 );
 
