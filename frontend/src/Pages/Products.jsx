@@ -1,7 +1,7 @@
 import React from "react";
 import AddProduct from "../Components/Product/AddProduct";
-import UpdateProduct from "../Components/Product/updateProduct";
-import { Link, Outlet } from "react-router-dom";
+
+import { Outlet } from "react-router-dom";
 import ProductsList from "./Admin/ProductsList";
 
 const Products = () => {
