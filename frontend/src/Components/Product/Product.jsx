@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getProduct } from "../../Redux/productSlice";
-import UpdateProduct from "./updateProduct";
+import UpdateProduct from "./UpdateProduct";
 
 const Product = ({ el }) => {
   const dispatch = useDispatch();
